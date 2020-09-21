@@ -2,7 +2,7 @@
 
 for Linux x86_64
 
-This is little proof of concept exercise how to infect an ELF file (ET_EXEC) with shellcode. 
+This is a little proof of concept exercise how to infect an ELF file (ET_EXEC) with shellcode. 
 The approach is the "Silvio Infection Method" which is described in lots of books and websites.
 
 prog.c is the source code for our "victim" ELF. It prints out its own PID in an infinity loop.
@@ -19,7 +19,10 @@ last but not least the file shellcode contains code to print out a string on the
 USAGE:
 ------
 
-./silvinfect <victim> <shellcode>
+./silvinfect [victim] [shellcode]
+
+When successful a new file is created. It is called infected.
+After chmod +x infected & ./infected this should run your original victim program, but at the beginning it executes the code given in shellcode. Try it out!
 
 
 PROBLEMS:
