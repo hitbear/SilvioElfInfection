@@ -34,5 +34,6 @@ This works not with shared libraries (ET_DYN) because there is a problem with th
 THANKS TO:
 ----------
 
-youben11, see https://github.com/youben11/silvio-text-infect/blob/master/silvio_64.c
-elfmaster
+- youben11, see https://github.com/youben11/silvio-text-infect/blob/master/silvio_64.c
+
+- elfmaster
