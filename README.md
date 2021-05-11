@@ -19,10 +19,18 @@ last but not least the file shellcode contains code to print out a string on the
 USAGE:
 ------
 
-./silvinfect [victim] [shellcode]
+    ./silvinfect [victim] [shellcode]
 
 
 After chmod +x infected & ./infected this should run your original victim program, but at the beginning it executes the code given in shellcode. Try it out!
+
+
+**Infect a program with a reverse tcp shell**
+
+The file rev_shell_shellcode contains a shellcode that opens a tcp connection to 192.168.178.142:49320 ( = 0xc0 a8 b2 8e). On the host side (192.168.178.142) listen to this port e.g. by typing the command
+    
+    nc -l 49320
+
 
 
 TODO:
